@@ -28,8 +28,12 @@ io.on("connection", (socket) => {
     socket.join(data);
   });
 
+  socket.on("name", (data) => {
+    socket.join(data);
+  });
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
+    socket.to(data.name).emit("receive_message", data);
   });
 });
 
